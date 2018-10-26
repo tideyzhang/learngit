@@ -11,3 +11,11 @@ git status
 
 git diff 
 查看更改的地方
+
+git checkout -- <filename>
+舍弃工作区的修改，使文章与版本库中一致
+
+
+git rm <filename>
+删除文件，然后需要再次 commit
+
