@@ -19,3 +19,19 @@ git checkout -- <filename>
 git rm <filename>
 删除文件，然后需要再次 commit
 
+git reset HEAD <filename>
+撤销暂存区的修改，重新置于工作区
+
+HEAD 指当前版本
+
+git log 
+查看修改的日志，查看提交的历史（commit）
+
+git log --pretty=oneline
+查看历史，以更简单的形式显示
+
+git reset --hard commit_id
+回退到指定的版本，版本 id 为 <commit>
+
+git reflog
+查看命令历史，以便查看版本
