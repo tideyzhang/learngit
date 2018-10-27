@@ -35,3 +35,43 @@ git reset --hard commit_id
 
 git reflog
 查看命令历史，以便查看版本
+
+
+
+
+git remote add origin git@github.com:michaelliao/learngit.git
+将远程 github 仓库与本地仓库连接
+
+git push -u origin master
+将本地仓库第一次全部推送至远程仓库
+
+git push origin master
+连接后，将本地修改推送至远程仓库
+
+git clone git@github.com:michaelliao/gitskills.git
+克隆远程库到本地，支持的协议可以是 ssh，也可以是 https，但后者速度更慢且繁琐，前者原生支持
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
