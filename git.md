@@ -1,77 +1,119 @@
-几个命令：
+# Git 使用规范（简单版）
 
-git add <filename>
-添加具体的文件
+这份文档用最直白的话，告诉你日常该怎么用 Git。
 
-git commit -m "what you want to say"
-将此前添加的文件提交到 git 中
+## 1. 每天工作的标准流程
 
+1. 先看当前状态：
+
+```bash
 git status
-查看 git 的状态
+```
 
-git diff 
-查看更改的地方
+2. 看看改了什么：
 
-git checkout -- <filename>
-舍弃工作区的修改，使文章与版本库中一致
+```bash
+git diff
+```
 
+3. 把需要提交的文件加入暂存区：
 
-git rm <filename>
-删除文件，然后需要再次 commit
+```bash
+git add <文件名>
+# 或一次性添加全部
+git add .
+```
 
-git reset HEAD <filename>
-撤销暂存区的修改，重新置于工作区
+4. 提交代码（说明要写清楚）：
 
-HEAD 指当前版本
+```bash
+git commit -m "描述这次改动"
+```
 
-git log 
-查看修改的日志，查看提交的历史（commit）
+5. 推送到远程仓库：
 
-git log --pretty=oneline
-查看历史，以更简单的形式显示
+```bash
+git push
+```
 
-git reset --hard commit_id
-回退到指定的版本，版本 id 为 <commit>
+---
 
-git reflog
-查看命令历史，以便查看版本
+## 2. 提交信息怎么写
 
+提交信息建议用一句话说清楚“做了什么”：
 
+- `新增：用户登录接口`
+- `修复：订单金额计算错误`
+- `优化：重构支付模块`
+- `文档：补充部署步骤`
 
+避免这种模糊写法：
 
-git remote add origin git@github.com:michaelliao/learngit.git
-将远程 github 仓库与本地仓库连接
+- `修改一下`
+- `update`
+- `fix bug`
 
-git push -u origin master
-将本地仓库第一次全部推送至远程仓库
+---
 
-git push origin master
-连接后，将本地修改推送至远程仓库
+## 3. 常用命令速查
 
-git clone git@github.com:michaelliao/gitskills.git
-克隆远程库到本地，支持的协议可以是 ssh，也可以是 https，但后者速度更慢且繁琐，前者原生支持
+### 查看类
 
+```bash
+git status      # 看当前工作区状态
+git diff        # 看未暂存的改动
+git log         # 看提交历史
+git reflog      # 看本地操作记录（找回提交很有用）
+```
 
+### 撤销类
 
+```bash
+git checkout -- <文件名>   # 丢弃工作区改动（未 add）
+git reset HEAD <文件名>    # 把文件从暂存区撤回工作区（已 add 未 commit）
+```
 
+### 版本回退
 
+```bash
+git reset --hard <commit_id>  # 回退到指定版本（谨慎使用）
+```
 
+---
 
+## 4. 远程仓库操作
 
+```bash
+git remote add origin <仓库地址>  # 关联远程仓库
+git push -u origin master         # 首次推送并建立跟踪关系
+git push origin master            # 后续推送
+git clone <仓库地址>              # 克隆远程仓库
+```
 
+> 说明：`master` 在部分新仓库里可能叫 `main`，按实际分支名使用。
 
+---
 
+## 5. 团队协作规范（建议）
 
+- 一次提交只做一件事，方便回滚和排查。
+- 提交前先 `git status`，确认没有无关文件。
+- 不要把密码、密钥、配置机密提交到仓库。
+- 推送前先拉取最新代码，减少冲突。
+- 发生冲突时，先理解差异再解决，不要盲目覆盖。
 
+---
 
+## 6. 新手最容易犯的错
 
+- 改完直接关电脑，忘记 `commit`。
+- `git add .` 后没检查，把不该提交的文件也提交了。
+- 用 `git reset --hard` 前没备份，导致本地改动丢失。
 
+---
 
+## 7. 一句话记忆
 
+**看状态 → 看差异 → add → commit → push**
 
-
-
-
-
-
-
+照这个顺序做，大多数 Git 问题都能避免。
